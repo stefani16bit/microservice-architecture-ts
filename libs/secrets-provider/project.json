@@ -1,0 +1,32 @@
+{
+  "name": "secrets-provider",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/secrets-provider/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/secrets-provider",
+        "tsConfig": "libs/secrets-provider/tsconfig.lib.json",
+        "packageJson": "libs/secrets-provider/package.json",
+        "main": "libs/secrets-provider/src/index.ts",
+        "assets": ["libs/secrets-provider/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}
